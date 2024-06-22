@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flying Card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --fontsizeP: 1.5rem;
+        }
+        .nowrap {
+            white-space: nowrap;
+        }
+        body{
+            overflow-wrap: break-word;
+            background-color: white;
+        }
+
+        html::-webkit-scrollbar {
+            display: none;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        main {
+        width: 98%;
+        margin: 0 auto;
+        background-color: transparent;
+        /* background-image: url('./assets/splashbg.jpg'); */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        height: 100vh;
+        margin-bottom: 25px;
+
+        overflow: visible;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-between;
+       }
+
+       header {
+        padding: 10px  30px;
+        width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: space-between;
+       }
+
+       header div.cool span{
+        color: transparent;
+        background-image: linear-gradient(to right, rgb(5, 168, 213) , black, orange);
+        background-clip: text;
+        -webkit-background-clip: text;
+       }
+
+       header div.cool h1 {
+        font-size: 2rem;
+        font-weight: bolder;
+       }
+
+       header aside {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 2vw;
+        align-items: center;
+       }
+
+       header aside section {
+        border: 1.5px solid rgb(189, 123, 2);
+        border-radius: 16px;
+        padding: 3px 4px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 30px;
+       }
+
+       header aside section input {
+        width: 80%;
+        border: none;
+        height: 98%;
+        outline: none;
+       }
+
+       aside section .fa-fade {
+        color: rgb(79, 167, 201);
+       }
+
+       section input::placeholder {
+        color: rgb(219, 149, 20);
+        font-size: 1rem;
+       }
+
+       header div a {
+        text-decoration: none;
+       }
+       header ul {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: 2vw;
+        list-style-type: none;
+       }
+
+       header ul li a{
+        display: inline-block;
+        color: orange;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.3rem;
+        text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
+       }
+
+       header ul li a:hover {
+        filter: brightness(1.2);
+        transform: scale(1.05);
+       }
+        
+       header div.menu span{
+        display: none;
+        color: transparent;
+        background-image: linear-gradient(to right, rgb(5, 168, 213) , black, orange);
+        background-clip: text;
+        -webkit-background-clip: text;
+       }
+
+
+
+        section.pictures {
+            overflow: visible;
+            overflow: auto;
+            display: flex;
+            flex-flow: row wrap;
+            align-items: start;
+            justify-content: center;
+            gap: 40px;
+            padding: 5%;
+            min-height: 150px;
+            z-index: 5;
+        }
+
+        #sun1, #sun3, #sun4, #sun7 {
+            align-self: flex-end;
+        }
+       
+        #sun2:hover, #sun5:hover, #sun8:hover {
+            transform:translateY(-20px);
+            transition-duration: 0.1s;
+        }
+
+            #sun3:hover {
+            transform: translateX(-20px);
+            transition-duration: .2s;
+         }
+         #sun7:hover {
+            transform: translateX(20px);
+            transition-duration: .2s;
+         }
+
+         #sun4:hover {
+            transform: rotate(-360deg);
+            transition-duration: 1.5s;
+        }
+        
+        #sun1:hover, #sun6:hover {
+            transform: rotate(360deg);
+            transition-duration: 1.5s;
+        }
+
+        #sun1, #sun2, #sun3, #sun4, #sun5, #sun6, #sun7, #sun8{
+            flex: 0 1 80px;
+            min-width: 60px;
+            overflow: visible;
+        }
+        #sun1 img, #sun2 img, #sun3 img, #sun4 img, #sun5 img, #sun6 img, #sun7 img, #sun8 img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        main article {
+            padding: 2%;
+            text-align: center;
+            background-image: radial-gradient(rgba(255, 166, 0, 0.200), rgba(135, 207, 235, 0.2));
+        }
+
+        main article span{
+        color: transparent;
+        background-image: linear-gradient(to right, rgb(4, 103, 130) , rgba(0, 0, 0, 0.626), rgb(247, 91, 91));
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-size: var(--fontsizeP);
+        }
+
+        /* main article span p {//this property doesn't work if background-clip: text; is used
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        } */
+
+
+
+        section.gird {
+            background-color: white;
+            display: flex;
+            flex-flow: row wrap;
+            align-content: center;
+            justify-content: center;
+            padding: 5% 2%;
+            gap: 3%;
+            row-gap: 40px;
+        }
+        section.gird>div {
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid rgba(128, 128, 128, 0.34);
+            outline: 1px solid rgba(128, 128, 128, 0.84);
+            outline-offset: 2px;
+
+            flex: 1 1 240px;
+            max-width: 250px;
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            gap: 15px;
+            padding: 50px 10px;
+            text-align: center;
+        }
+        section.gird>div:hover {
+            transform: translateY(-3px);
+            transition-duration: 0.10s;
+            box-shadow: 5px 1px 30px 20px rgba(0, 0, 0, 0.03), -5px -1px 30px 20px rgba(0, 0, 0, 0.03);
+            /* outline: none; */
+        }
+
+        section.gird>div figure {
+            width: 100%;
+            background-color: rgb(5, 168, 213);
+            place-content: center;
+            border-radius: 8px;
+        }
+
+        section.gird>div figure img{
+            width: 98%;
+            margin: 0 auto;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+        .gird div ul {
+            text-align: left;
+        }
+        /* #o1, #o2, #o3, #o4, #o5, #o6, #o7, #o8, #o9, #o10, #o11, #o12, #o13, #o14, #o15 {
+           
+        } */
+
+        @media screen and (max-width: 768px) {
+        header ul {
+        display: none;
+        }
+
+        header div.menu span{
+        display: block;
+        color: transparent;
+        background-image: linear-gradient(to right, rgb(5, 168, 213) , black, orange);
+        background-clip: text;
+        -webkit-background-clip: text;
+        font-size: 1.8rem;
+       }
+
+       header aside section {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 426px) {
+            
+        main {
+            height: 95vh;
+        }
+        section.gird {
+            background-color: white;
+            display: flex;
+            flex-flow: row wrap;
+            align-content: center;
+            justify-content: center;
+            padding: 5% 2%;
+            gap: 4rem;
+            row-gap: 50px;
+            margin: 2rem 0;
+        }
+            section.gird>div {
+            /* background-color: white;
+            border-radius: 8px;
+            border: 1px solid rgba(128, 128, 128, 0.34);
+            outline: 1px solid rgba(128, 128, 128, 0.84);
+            outline-offset: 2px; */
+
+            flex: 1 1 280px;
+            max-width: 300px;
+            gap: 20px;
+            padding: 70px 10px;
+            text-align: center;
+        }
+        
+        section.pictures {
+            overflow: visible;
+            gap: 40px;
+            row-gap: 30px;
+            padding: 5%;
+            min-height: 150px;
+            z-index: 5;
+            margin: 0;
+        }
+        main article span {
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+            padding: 3%;
+        }
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="cool" style="font-family:cursive;">
+                <h1><a href=""><span>Hulos</span></a></h1>
+            </div>
+    
+            <aside>
+                <section class="search">
+                    <input type="text" name="search" placeholder="search" autocomplete="yes">
+                    <span><i class="fa-solid fa-magnifying-glass fa-fade"></i></span>
+                </section>
+                <ul>
+                    <li><a href="#">Products</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#"><span class="nowrap">Contact Us</span></a></li>
+                    <li><a href="#">Gallery</a></li>
+                </ul>
+                <div class="menu">
+                    <span class="imgblock menubar"><i class="fa-solid fa-bars"></i></span>
+                </div>
+                </div>
+            </aside>
+        </header>
+        <section class="pictures">
+            <div id="sun1"><img src="./assets/firstt.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun2"><img src="./assets/secondd.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun3"><img src="./assets/fourthh.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun4"><img src="./assets/fifthh.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun5"><img src="./assets/seventhh.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun6"><img src="./assets/firstt.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun7"><img src="./assets/secondd.png" alt="Wait for it" width="80" height="80"></div>
+            <div id="sun8"><img src="./assets/fourthh.png" alt="Wait for it" width="80" height="80"></div>
+        </section>
+        <article>
+            <p><span>Hey, Thanks For Coming Around! We have lots of Amazing stuffs just for you!</span></p>
+        </article>
+    </main>
+    <section class="gird">
+        <div id="o1">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o2">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o3">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o4">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o5">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o6">
+            <figure><img src="./assets/backg.jpg" alt="nature" width="1080" height="720"></figure>
+            <p><button>Click</button>
+                <button>Buy now</button>
+            </p>
+        </div>
+        <div id="o7">
+            <figure><img src="./assets/backg.jpg" alt="nature" width="1080" height="720"></figure>
+            <p><button>Click</button>
+                <button>Buy now</button>
+            </p>
+        </div>
+        <div id="o8">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o9">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o10">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o11">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o12">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o13">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o14">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o15">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+        <div id="o16">
+            <h4>Pleased to meet You!</h4>
+            <p>Can I know your name?</p>
+            <p>Here are a few of the many items you could get from our shop</p>
+            <ul>
+                <li>Brazilian Hair</li>
+                <li>Italian Leather Bags</li>
+                <li>Sun Glasses</li>
+                <li>Quartz Watches</li>
+                <li>Unisex Clothings</li>
+                <li>Smart Watches</li>
+                <li>Beddings</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
