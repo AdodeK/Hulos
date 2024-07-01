@@ -253,6 +253,18 @@ section.gird > div {
   padding: 50px 10px;
   text-align: center;
 }
+
+#o1 figure {
+  width: 100%;
+  outline: 1px double orange;
+  outline-offset: -2px;
+}
+
+#o1 figure img {
+  width: 100%;
+  height: auto;
+}
+
 section.gird > div:hover {
   transform: translateY(-3px);
   transition-duration: 0.1s;
