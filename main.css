@@ -336,7 +336,7 @@ section.gird > div figure img {
   }
 
   section.pictures {
-    overflow: visible;
+    overflow: auto;
     gap: 40px;
     row-gap: 30px;
     padding: 5%;
